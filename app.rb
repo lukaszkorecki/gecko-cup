@@ -25,7 +25,7 @@ class App < Sinatra::Base
     TextWidget.new(ApiClient.new.matches(:today)).to_json
   end
 
-  get "/matches/today.json" do
-    TextWidget.new(ApiClient.new.matches(:today)).to_json
+  get "/matches/current.json" do
+    TextWidget.new(ApiClient.new.matches(:current)).to_json
   end
 end
