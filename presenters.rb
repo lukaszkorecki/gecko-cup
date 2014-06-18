@@ -20,14 +20,17 @@ class GroupPresenter
   attr_reader :d
 
   TEMPLATE = <<-TEMPLATE.gsub(/^\s+/,'')
-  <%= d["country"] %>: Wins: <%= d["wins"] %> Draws: <%= d["draws"] %> Losses: <%= d["losses"] %>
+   Wins: <%= d["wins"] %> Draws: <%= d["draws"] %> Losses: <%= d["losses"] %>
   TEMPLATE
   def initialize group_data
     @d = group_data
   end
 
-  def to_html
-    ERB.new(TEMPLATE).result binding
+  def to_widget
+    {
+      "title" => { "text" => d["country"] },
+      "description" => ERB.new(TEMPLATE).result(binding)
+    }
   end
 end
 

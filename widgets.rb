@@ -16,3 +16,16 @@ class TextWidget
 end
 
 
+class ListWidget
+  def initialize collection
+    @collection = Array(collection)
+  end
+
+  def to_json
+    {
+      "item" => @collection.map do |item|
+        GroupPresenter.new(item).to_widget
+    end
+    }.to_json
+  end
+end

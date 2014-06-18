@@ -37,4 +37,8 @@ class App < Sinatra::Base
       TextWidget.new(current).to_json
     end
   end
+
+  get "/group" do
+    ListWidget.new(ApiClient.new.group_results).to_json
+  end
 end
