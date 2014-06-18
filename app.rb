@@ -26,6 +26,15 @@ class App < Sinatra::Base
   end
 
   get "/matches/current.json" do
-    TextWidget.new(ApiClient.new.matches(:current)).to_json
+    current = ApiClient.new.matches(:current)
+    if current.empty?
+      {
+        "item" => [
+          { "text" => "No matches at the moment!", "type" => 1 }
+        ]
+      }.to_json
+    else
+      TextWidget.new(current).to_json
+    end
   end
 end
