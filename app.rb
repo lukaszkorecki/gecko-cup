@@ -13,6 +13,10 @@ require './presenters'
 require './widgets'
 
 class App < Sinatra::Base
+  get "/" do
+    "hello"
+  end
+
   get "/matches/today.json" do
     TextWidget.new(ApiClient.new.matches(:today)).to_json
   end
